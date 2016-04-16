@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="key_manager" name="com.hzih.sslvpn.domain.KeyManager">
+        <id access="field" name="id" type="int" column="id" length="10">
+            <generator class="increment"/>
+        </id>
+        <property name="key_name" length="50" column="key_name"  access="field" type="string"/>
+        <property name="key_file" length="50" column="key_file" access="field" type="string"/>
+    </class>
+</hibernate-mapping>

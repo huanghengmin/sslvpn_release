@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="terminal" name="com.hzih.sslvpn.domain.Terminal">
+    <id access="field" name="id" type="int" column="id" length="10">
+    <generator class="foreign">
+        <param name="property">routeUser</param>
+      </generator>
+    </id>
+
+    <one-to-one name="routeUser" class="com.hzih.sslvpn.domain.RouteUser" constrained="true"></one-to-one>
+
+    <property name="terminal_name" length="20" column="terminal_name" access="field" type="string"/>
+    <property name="terminal_type" length="20" column="terminal_type" access="field" type="string"/>
+    <property name="user_name" length="20" column="user_name" access="field" type="string"/>
+    <property name="terminal_status" length="10" column="terminal_status"  access="field" type="int"/>
+    <property name="terminal_desc" length="50" column="terminal_desc" access="field" type="string"/>
+    <property name="ip" length="50" column="ip" access="field" type="string"/>
+    <property name="mac" length="50" column="mac" access="field" type="string"/>
+    <property name="on_line" length="4" column="on_line" access="field" type="int"/>
+  </class>
+</hibernate-mapping>

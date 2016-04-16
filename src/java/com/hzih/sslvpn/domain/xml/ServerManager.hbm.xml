@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="server_manager" name="com.hzih.sslvpn.domain.ServerManager">
+        <id access="field" name="id" type="int" column="id" length="10">
+            <generator class="increment"/>
+        </id>
+        <property name="server_name" length="50" column="server_name" access="field" type="string"/>
+        <property name="server_file" length="50" column="server_file" access="field" type="string"/>
+        <property name="cn" length="50" column="cn" access="field" type="string"/>
+        <property name="notAfter" length="50" column="notbefore" access="field" type="string"/>
+        <property name="notBefore" length="50" column="notafter" access="field" type="string"/>
+    </class>
+</hibernate-mapping>

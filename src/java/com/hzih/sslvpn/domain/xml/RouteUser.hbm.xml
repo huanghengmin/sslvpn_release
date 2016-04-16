@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="route_user" name="com.hzih.sslvpn.domain.RouteUser">
+    <id access="field" name="id" type="int" column="id" length="10">
+      <generator class="increment"/>
+    </id>
+
+    <set cascade="save-update" access="field" lazy="false" table="user_route_user" name="users" inverse="false" >
+      <key column = "route_user_id"/>
+      <many-to-many class="com.hzih.sslvpn.domain.User" column="user_id"/>
+    </set>
+
+    <one-to-one name="terminal" class="com.hzih.sslvpn.domain.Terminal" cascade="all"></one-to-one>
+
+    <property name="user_name" length="20" column="user_name" access="field" type="string"/>
+    <property name="user_idcard" length="20" column="user_idcard" access="field" type="string"/>
+    <property name="user_province" length="20" column="user_province" access="field" type="string"/>
+    <property name="user_city" length="20" column="user_city" access="field" type="string"/>
+    <property name="user_organization" length="20" column="user_organization" access="field" type="string"/>
+    <property name="user_institution" length="20" column="user_institution" access="field" type="string"/>
+    <property name="user_phone" length="20" column="user_phone" access="field" type="string"/>
+    <property name="user_address" length="50" column="user_address" access="field" type="string"/>
+    <property name="user_email" length="20" column="user_email" access="field" type="string"/>
+  </class>
+</hibernate-mapping>

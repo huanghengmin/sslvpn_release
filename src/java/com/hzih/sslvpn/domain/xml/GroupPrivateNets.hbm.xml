@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="group_private_nets" name="com.hzih.sslvpn.domain.GroupPrivateNets">
+        <!-- 复合主键使用composite-id标签 -->
+        <composite-id>
+            <!-- key-property标签表示哪一些属性对应复合主键 -->
+            <key-property name="group_id" column="group_id" type="int" length="11" ></key-property>
+            <key-property name="private_net_id" column="private_net_id" type="int" length="11" ></key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
+

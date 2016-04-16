@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+    <filter>
+		<filter-name>struts2</filter-name> 
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name> 
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<display-name>MonitorCenter</display-name>
+	<description>MonitorCenter</description>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring.xml</param-value>
+	</context-param>
+
+    <servlet>
+        <servlet-name>DisplayChart</servlet-name>
+        <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayChart</servlet-name>
+        <url-pattern>/DisplayChart</url-pattern>
+    </servlet-mapping>
+
+    <!--vpn online users-->
+    <servlet>
+        <servlet-name>DoTermOnLine</servlet-name>
+        <servlet-class>com.hzih.sslvpn.servlet.online.DoTermOnLine</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoTermOnLine</servlet-name>
+        <url-pattern>/DoTermOnLine</url-pattern>
+    </servlet-mapping>
+
+    <!--download android client-->
+    <servlet>
+        <servlet-name>DownLoadAndroid</servlet-name>
+        <servlet-class>com.hzih.sslvpn.web.servlet.DownLoadAndroid</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownLoadAndroid</servlet-name>
+        <url-pattern>/DownLoadAndroid</url-pattern>
+    </servlet-mapping>
+
+    <!--download Win32 client-->
+    <servlet>
+        <servlet-name>DownLoadWin32</servlet-name>
+        <servlet-class>com.hzih.sslvpn.web.servlet.DownLoadWin32</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownLoadWin32</servlet-name>
+        <url-pattern>/DownLoadWin32</url-pattern>
+    </servlet-mapping>
+
+    <!--download Win64 client-->
+    <servlet>
+        <servlet-name>DownLoadWin64</servlet-name>
+        <servlet-class>com.hzih.sslvpn.web.servlet.DownLoadWin64</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownLoadWin64</servlet-name>
+        <url-pattern>/DownLoadWin64</url-pattern>
+    </servlet-mapping>
+
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>requestLogFilter</filter-name>
+		<filter-class>cn.collin.commons.web.filter.RequestLogFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CheckLoginFilter</filter-name>
+		<filter-class>com.hzih.sslvpn.web.filter.CheckLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CheckLoginFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+		<url-pattern>*.jsp</url-pattern>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>requestLogFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>sitecontextloader</servlet-name>
+		<servlet-class>com.hzih.sslvpn.web.servlet.SiteContextLoaderServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GenerateVerifyCodeImageServlet</servlet-name>
+		<servlet-class>
+			cn.collin.commons.web.servlet.ImageVerifyCodeServlet
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TimerCountReportServlet</servlet-name>
+		<servlet-class>
+            com.hzih.sslvpn.web.servlet.TimerCountReportServlet
+        </servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GenerateVerifyCodeImageServlet</servlet-name>
+		<url-pattern>/RandomCodeCtrl</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>-1</session-timeout>
+	</session-config>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+    <!--update user-->
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.web.action.sslvpn.server.UpdateServlet
+        </servlet-class>
+        <load-on-startup>300</load-on-startup>
+    </servlet>
+
+    <!--clear user logs-->
+    <servlet>
+        <servlet-name>ClearUserLogs</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.servlet.clearlog.ClearUserLogs
+        </servlet-class>
+        <load-on-startup>500</load-on-startup>
+    </servlet>
+
+    <!--终端 用户状态以及三码合一servlet-->
+    <servlet>
+        <servlet-name>DoTerminalThreeYards</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.servlet.threeyards.DoTerminalThreeYards
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DoTerminalThreeYards</servlet-name>
+        <url-pattern>/DoTerminalThreeYards</url-pattern>
+    </servlet-mapping>
+
+
+    <!--终端 状态 servlet-->
+    <servlet>
+        <servlet-name>DoTerminalStatus</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.servlet.threeyards.DoTerminalStatus
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DoTerminalStatus</servlet-name>
+        <url-pattern>/DoTerminalStatus</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>
+        <servlet-name>GetMonitorInfoServlet</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.monitor.servlet.GetMonitorInfoServlet
+        </servlet-class>
+       <load-on-startup>5</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMonitorInfoServlet</servlet-name>
+        <url-pattern>/GetMonitorInfoServlet</url-pattern>
+    </servlet-mapping>-->
+
+    <!--<servlet>
+        <servlet-name>GetVPNInfoServlet</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.monitor.servlet.GetVPNInfoServlet
+        </servlet-class>
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetVPNInfoServlet</servlet-name>
+        <url-pattern>/GetVPNInfoServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VpnKickUserServlet</servlet-name>
+        <servlet-class>
+            com.hzih.sslvpn.monitor.servlet.VpnKickUserServlet
+        </servlet-class>
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VpnKickUserServlet</servlet-name>
+        <url-pattern>/VpnKickUserServlet</url-pattern>
+    </servlet-mapping>-->
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/tags/core</taglib-uri>
+            <taglib-location>/WEB-INF/c-1_0-rt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://www.collin.cn/taglib/lbs</taglib-uri>
+            <taglib-location>/WEB-INF/lbs.tld</taglib-location>
+        </taglib>
+	</jsp-config>
+	<resource-ref>
+		<description>DB Connection</description> 
+		<res-ref-name>jdbc/monitorDS</res-ref-name> 
+		<res-type>javax.sql.DataSource</res-type> 
+		<res-auth>Container</res-auth> 
+	</resource-ref> 
+
+</web-app>

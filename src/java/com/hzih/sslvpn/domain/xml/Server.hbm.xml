@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="server" name="com.hzih.sslvpn.domain.Server">
+        <id access="field" name="id" type="int" column="id" length="11">
+            <generator class="increment"/>
+        </id>
+        <property name="local" length="50" column="local" access="field" type="string"/>
+        <property name="port" column="port" access="field" type="int"/>
+        <property name="protocol" length="11" column="protocol" access="field" type="string"/>
+        <property name="server" length="50" column="server" access="field" type="string"/>
+        <property name="traffic_server" column="traffic_server" access="field" type="int"/>
+        <property name="client_to_client" column="client_to_client" access="field" type="int"/>
+        <property name="duplicate_cn" column="duplicate_cn" access="field" type="int"/>
+        <property name="keep_alive" column="keep_alive" access="field" type="int"/>
+        <property name="keep_alive_interval" column="keep_alive_interval" access="field" type="int"/>
+        <property name="cipher" length="50" column="cipher" access="field" type="string"/>
+        <property name="comp_lzo" column="comp_lzo" access="field" type="int"/>
+        <property name="max_clients" column="max_clients" access="field" type="int"/>
+        <property name="log_append" column="log_append" access="field" type="int"/>
+        <property name="verb" column="verb" access="field" type="int"/>
+        <property name="mute" column="mute" access="field" type="int"/>
+        <property name="dynamic_net" length="100" column="dynamic_net" access="field" type="string"/>
+        <property name="static_net" length="100" column="static_net" access="field" type="string"/>
+        <property name="group_default_net" length="250" column="group_default_net" access="field" type="string"/>
+        <property name="private_net" length="250" column="private_net" access="field" type="string"/>
+        <property name="allow_ping_server" column="allow_ping_server" access="field" type="int"/>
+        <property name="allow_private_net" length="50" column="allow_private_net" access="field" type="string"/>
+        <property name="client_dns_type"  column="client_dns_type" access="field" type="int"/>
+        <property name="client_first_dns" length="50" column="client_first_dns" access="field" type="string"/>
+        <property name="client_second_dns" length="50" column="client_second_dns" access="field" type="string"/>
+        <property name="default_domain_suffix" length="50" column="default_domain_suffix" access="field" type="string"/>
+        <property name="use_connect_script"  column="use_connect_script" access="field" type="int"/>
+        <property name="use_disconnect_script"  column="use_disconnect_script" access="field" type="int"/>
+        <property name="use_learn_address_script"  column="use_learn_address_script" access="field" type="int"/>
+    </class>
+</hibernate-mapping>

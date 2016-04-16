@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="file_serials" name="com.hzih.sslvpn.domain.FileSerial">
+        <id access="field" name="id" type="int" column="id" length="10">
+        </id>
+        <property name="ca_serial" length="10" column="ca_serial" access="field" type="int"/>
+        <property name="server_serial" length="10" column="server_serial" access="field" type="int"/>
+        <property name="key_serial" length="10" column="key_serial" access="field" type="int"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class table="user" name="com.hzih.sslvpn.domain.User">
+        <id access="field" name="id" type="int" column="id" length="11">
+            <generator class="increment"/>
+        </id>
+        <property name="cn" length="100" column="cn" access="field" type="string" />
+        <property name="id_card" length="100" column="id_card" access="field" type="string" />
+
+        <set cascade="save-update" access="field" lazy="false" table="user_group" name="groupsSet" inverse="false" >
+            <key column="user_id"/>
+            <many-to-many class="com.hzih.sslvpn.domain.Groups" column="group_id"/>
+        </set>
+
+        <property name="deny_access" length="4" column="deny_access" access="field" type="int"/>
+        <property name="dynamic_ip" length="4" column="dynamic_ip" access="field" type="int"/>
+        <property name="static_ip" length="30" column="static_ip" access="field" type="string"/>
+
+        <property name="allow_all_subnet" length="4" column="allow_all_subnet" access="field" type="int"/>
+        <property name="allow_all_client" length="4" column="allow_all_client" access="field" type="int"/>
+        <property name="create_time" column="create_time" access="field" type="java.util.Date"/>
+        <property name="quota_cycle" length="11" column="quota_cycle" access="field" type="int"/>
+        <property name="quota_bytes" length="20" column="quota_bytes" access="field" type="long"/>
+        <property name="active" length="4" column="active" access="field" type="int"/>
+        <property name="email" length="30" column="email" access="field" type="string"/>
+        <property name="phone" length="30" column="phone" access="field" type="string"/>
+        <property name="address" length="100" column="address" access="field" type="string"/>
+        <property name="serial_number" length="50" column="serial_number" access="field" type="string"/>
+        <property name="type" length="10" column="type" access="field" type="string"/>
+        <property name="revoked" length="4" column="revoked" access="field" type="int"/>
+        <property name="enabled" length="4" column="enabled" access="field" type="int"/>
+        <property name="real_address" length="30" column="real_address" access="field" type="string"/>
+        <property name="byte_received"  column="byte_received" access="field" type="long"/>
+        <property name="byte_send" column="byte_send" access="field" type="long"/>
+        <property name="connected_since" column="connected_since" access="field" type="java.util.Date"/>
+        <property name="virtual_address" length="50" column="virtual_address" access="field" type="string"/>
+        <property name="last_ref" column="last_ref" access="field" type="java.util.Date"/>
+        <property name="count_bytes_cycle" column="count_bytes_cycle" access="field" type="long"/>
+        <property name="max_bytes" column="max_bytes" access="field" type="long"/>
+        <property name="net_id" length="30" column="net_id" access="field" type="string"/>
+        <property name="terminal_id" length="30" column="terminal_id" access="field" type="string"/>
+        <property name="issueCa" length="200" column="issueCa" access="field" type="string"/>
+        <property name="orgCode" length="30" column="orgCode" access="field" type="string"/>
+        <property name="orgName" length="30" column="orgName" access="field" type="string"/>
+        <property name="employeeCode" length="30" column="employeeCode" access="field" type="string"/>
+
+        <property name="create_Date" column="create_Date" access="field" type="java.util.Date"/>
+        <property name="end_Date" column="end_Date" access="field" type="java.util.Date"/>
+
+        <property name="province" length="30" column="province" access="field" type="string"/>
+        <property name="city" length="30" column="city" access="field" type="string"/>
+        <property name="organization" length="30" column="organization" access="field" type="string"/>
+        <property name="institutions" length="30" column="institutions" access="field" type="string"/>
+        <property name="description" length="30" column="description" access="field" type="string"/>
+        <property name="status" length="30" column="status" access="field" type="string"/>
+        <property name="revoke_status" length="30" column="revoke_status" access="field" type="string"/>
+
+        <property name="view_flag" column="view_flag" access="field" type="int"/>
+
+        <set cascade="save-update" access="field" lazy="false" table="user_private_net" name="user_subNets" inverse="false" >
+            <key column="user_id"/>
+            <many-to-many class="com.hzih.sslvpn.domain.PrivateNet" column="private_net_id"/>
+        </set>
+
+
+        <set cascade="save-update" access="field" lazy="false" table="user_route_user" name="routeUsers" inverse="false" >
+            <key column="user_id"/>
+            <many-to-many class="com.hzih.sslvpn.domain.RouteUser" column="route_user_id"/>
+        </set>
+
+
+        <set name="userGpses" inverse="true" cascade="all">
+            <key column="user_id" ></key>
+            <one-to-many class="com.hzih.sslvpn.domain.UserGps"/>
+        </set>
+
+    </class>
+</hibernate-mapping>
